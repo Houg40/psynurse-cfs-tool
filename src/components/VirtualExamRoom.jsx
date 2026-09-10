@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, AlertCircle, HeartPulse, User, HelpCircle, CheckCircle2, ChevronRight, Activity } from 'lucide-react';
+import { Send, Sparkles, AlertCircle, HeartPulse, User, HelpCircle, CheckCircle2, ChevronRight, Activity, Volume2, VolumeX, Mic, Play } from 'lucide-react';
 
 export default function VirtualExamRoom({ caseData, messages, onSendMessage, onAskProbe, revealedClues, onAdvanceToCharting }) {
   const [customInput, setCustomInput] = useState('');
+  const [isAudioEnabled, setIsAudioEnabled] = useState(true);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -12,6 +14,50 @@ export default function VirtualExamRoom({ caseData, messages, onSendMessage, onA
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Text to Speech playback function
+  const speakText = (text) => {
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.cancel(); // Stop any active speech
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95; // Slightly slower, authentic fatigued cadence
+    utterance.pitch = 0.92; // Slightly deeper male tone
+
+    // Attempt to pick male English voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const maleVoice = voices.find(v => 
+      v.lang.startsWith('en') && 
+      (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('david') || v.name.toLowerCase().includes('guy') || v.name.toLowerCase().includes('george'))
+    );
+    if (maleVoice) {
+      utterance.voice = maleVoice;
+    }
+
+    utterance.onstart = () => setIsSpeaking(true);
+    utterance.onend = () => setIsSpeaking(false);
+    utterance.onerror = () => setIsSpeaking(false);
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // Automatically speak latest patient response if audio is enabled
+  useEffect(() => {
+    if (!isAudioEnabled || messages.length === 0) return;
+    const lastMsg = messages[messages.length - 1];
+    if (lastMsg.sender === 'patient') {
+      speakText(lastMsg.text);
+    }
+  }, [messages, isAudioEnabled]);
+
+  const toggleAudio = () => {
+    if (isAudioEnabled) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+    setIsAudioEnabled(prev => !prev);
+  };
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -41,6 +87,31 @@ export default function VirtualExamRoom({ caseData, messages, onSendMessage, onA
             <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-xs border border-slate-700/60 text-[11px] font-bold text-white">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Telehealth Room • Live</span>
+            </div>
+
+            {/* Audio Toggle & Speaking Status Overlay */}
+            <div className="absolute top-3 right-3 flex items-center gap-1.5">
+              {isSpeaking && (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-950/90 border border-teal-500 text-[10px] font-bold text-teal-300 shadow-md animate-pulse">
+                  <span className="flex gap-0.5 items-end h-2.5">
+                    <span className="w-0.5 h-full bg-teal-400 animate-bounce"></span>
+                    <span className="w-0.5 h-2 bg-teal-400 animate-bounce [animation-delay:0.1s]"></span>
+                    <span className="w-0.5 h-3 bg-teal-400 animate-bounce [animation-delay:0.2s]"></span>
+                  </span>
+                  <span>Speaking...</span>
+                </div>
+              )}
+              <button
+                onClick={toggleAudio}
+                className={`p-1.5 rounded-full border backdrop-blur-xs transition-all shadow-md ${
+                  isAudioEnabled
+                    ? 'bg-teal-600/90 border-teal-400 text-white hover:bg-teal-500'
+                    : 'bg-slate-900/80 border-slate-700 text-slate-400 hover:text-white'
+                }`}
+                title={isAudioEnabled ? "Audio Enabled (Click to Mute)" : "Audio Muted (Click to Enable)"}
+              >
+                {isAudioEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+              </button>
             </div>
             {/* Patient Name Overlay */}
             <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-1.5 rounded-xl bg-slate-900/85 backdrop-blur-xs border border-slate-700/60">
@@ -169,7 +240,18 @@ export default function VirtualExamRoom({ caseData, messages, onSendMessage, onA
                       : 'bg-slate-800 border border-slate-700 text-slate-200 rounded-tl-xs'
                   }`}
                 >
-                  <p>{msg.text}</p>
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="flex-1">{msg.text}</p>
+                    {!isClinician && (
+                      <button
+                        onClick={() => speakText(msg.text)}
+                        className="text-slate-400 hover:text-teal-300 p-1 rounded hover:bg-slate-700/60 transition-all flex-shrink-0"
+                        title="Replay spoken audio"
+                      >
+                        <Volume2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
                   {msg.revealedBadge && (
                     <div className="mt-2.5 pt-2 border-t border-emerald-500/30 flex items-center gap-1.5 text-[11px] font-bold text-emerald-300">
                       <Sparkles className="w-3.5 h-3.5 text-amber-300" />

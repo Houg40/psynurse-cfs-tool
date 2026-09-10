@@ -37,6 +37,7 @@ export default function App() {
   const [messages, setMessages] = useState(initialMessages);
   const [revealedClues, setRevealedClues] = useState(initialClues);
   const [orderData, setOrderData] = useState(initialOrder);
+  const [week8Action, setWeek8Action] = useState('');
 
   // Handle probe button click
   const handleAskProbe = (probe) => {
@@ -130,6 +131,7 @@ export default function App() {
     setMessages(initialMessages);
     setRevealedClues(initialClues);
     setOrderData(initialOrder);
+    setWeek8Action('');
   };
 
   const revealedCount = Object.values(revealedClues).filter(Boolean).length;
@@ -172,6 +174,8 @@ export default function App() {
             <TimeJumpEngine
               caseData={currentCase}
               orderData={orderData}
+              week8Action={week8Action}
+              setWeek8Action={setWeek8Action}
               onBackToChart={() => setActivePhase('charting')}
               onProceedToDebrief={() => setActivePhase('debrief')}
             />
@@ -182,6 +186,7 @@ export default function App() {
               caseData={currentCase}
               orderData={orderData}
               revealedClues={revealedClues}
+              week8Action={week8Action}
               onRestartCase={handleResetCase}
               onBackToTimeJump={() => setActivePhase('timejump')}
             />

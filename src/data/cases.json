@@ -283,6 +283,67 @@
         "preceptorNotes": "CRITICAL PHARMACOLOGY ERROR: You titrated Lamotrigine too quickly (>25mg starting dose). Rapid titration multiplies the risk of life-threatening Stevens-Johnson Syndrome (SJS) / Toxic Epidermal Necrolysis (TEN) by tenfold. Lamotrigine MUST begin at 25mg daily for 14 full days.",
         "actionRequired": "IMMEDIATELY DISCONTINUE Lamotrigine. Send to Urgent Care/ED for dermatological evaluation."
       }
+    },
+    "week8Outcomes": {
+      "rescueFromMania": [
+        {
+          "id": "rescue_sg_quetiapine",
+          "label": "Discontinue SSRI immediately + Initiate Quetiapine XR 100mg QHS titrating to 300mg",
+          "isCorrect": true,
+          "resultTitle": "Successful Clinical Salvage: Mania Resolved & Euthymia Restored",
+          "patientQuote": "Marcus returns at Week 8 calm, well-rested, and deeply appreciative: 'Stopping that first pill made a world of difference. The Quetiapine brought me right back to earth. I'm sleeping 7 hours a night again, the racing thoughts are completely gone, and my partner is no longer terrified.'",
+          "phq9Score": 7,
+          "salvagedGrade": "B+",
+          "salvagedScore": 84,
+          "preceptorFeedback": "EXCELLENT CRISIS INTERVENTION: While the initial SSRI prescription was a diagnostic failure, you demonstrated superior clinical salvage competency by immediately halting the offending agent and starting a first-line antimanic/bipolar depression SGA. You safely stabilized Marcus and averted psychiatric hospitalization."
+        },
+        {
+          "id": "rescue_benzo_prn",
+          "label": "Discontinue SSRI + Prescribe Clonazepam 0.5mg PRN for sleep and agitation",
+          "isCorrect": false,
+          "resultTitle": "Incomplete Salvage: Masked Symptoms with Residual Affective Instability",
+          "patientQuote": "Marcus reports: 'The sedative knocks me out for a few hours, but during the day I still feel jittery, irritable, and like my thoughts are going 100 miles an hour. I almost bought another expensive lens set yesterday.'",
+          "phq9Score": 12,
+          "salvagedGrade": "C",
+          "salvagedScore": 68,
+          "preceptorFeedback": "SUBOPTIMAL CLINICAL SALVAGE: Benzodiazepines provide temporary symptomatic sedation but possess ZERO antimanic or mood-stabilizing properties. You stopped the offending SSRI, but failed to initiate an FDA-approved mood stabilizer or SGA."
+        },
+        {
+          "id": "rescue_add_trazodone",
+          "label": "Continue SSRI + Add Trazodone 50mg QHS to force sleep",
+          "isCorrect": false,
+          "resultTitle": "Severe Destabilization: Escalated Mixed Episode",
+          "patientQuote": "Marcus's partner logs on to report that Marcus was admitted to the inpatient crisis stabilization unit after 48 hours of delirium, acute agitation, and paranoia.",
+          "phq9Score": 18,
+          "salvagedGrade": "F",
+          "salvagedScore": 25,
+          "preceptorFeedback": "CRITICAL MALPRACTICE: Adding a second serotonergic antidepressant (Trazodone) to a patient in an active antidepressant-induced manic switch exacerbates mania and drastically increases Serotonin Syndrome risk."
+        }
+      ],
+      "maintenanceLamotrigine": [
+        {
+          "id": "maint_titrate_100mg",
+          "label": "Advance Lamotrigine from 50mg daily to 100mg daily (Target therapeutic range)",
+          "isCorrect": true,
+          "resultTitle": "Full Remission & Prophylactic Mood Stabilization",
+          "patientQuote": "Marcus is beaming at Week 8: 'Stepping up to 100mg was seamless—zero rash, no side effects. The fog is completely lifted. I played two full hours of guitar yesterday and I'm leading projects at work again. I feel like myself for the first time in two years.'",
+          "phq9Score": 4,
+          "salvagedGrade": "A+",
+          "salvagedScore": 98,
+          "preceptorFeedback": "OUTSTANDING LONGITUDINAL MANAGEMENT: Flawless adherence to guideline-directed maintenance titration. You guided the patient safely from subtherapeutic test doses to the proven therapeutic window (100mg-200mg) with zero dermatological risk."
+        },
+        {
+          "id": "maint_stay_subtherapeutic",
+          "label": "Leave Lamotrigine at 50mg daily indefinitely",
+          "isCorrect": false,
+          "resultTitle": "Subtherapeutic Stagnation (Incomplete Recovery)",
+          "patientQuote": "Marcus reports: 'I'm not getting worse, but I still feel like I'm running at about 60%. Motivation is still hard, and concentration fades by afternoon.'",
+          "phq9Score": 10,
+          "salvagedGrade": "B-",
+          "salvagedScore": 76,
+          "preceptorFeedback": "SUBTHERAPEUTIC DOSING: 50mg is a titration transition dose, not an evidence-based maintenance dose for bipolar depression. Therapeutic response typically requires 100mg to 200mg daily."
+        }
+      ]
     }
   }
 ]
