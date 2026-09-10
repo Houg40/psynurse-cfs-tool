@@ -1,7 +1,37 @@
-import React from 'react';
-import { Stethoscope, FileText, FastForward, Award, RotateCcw, ShieldCheck, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Stethoscope, FileText, FastForward, Award, RotateCcw, ShieldCheck, Sparkles, Download } from 'lucide-react';
 
 export default function Navbar({ activePhase, setActivePhase, onResetCase, revealedCluesCount, totalCluesCount }) {
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [isInstalled, setIsInstalled] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setIsInstalled(true);
+    }
+
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setIsInstalled(true);
+      }
+      setDeferredPrompt(null);
+    } else {
+      alert("To install PsyNurse CFS onto your desktop or taskbar, click the 'Install App' monitor icon on the right side of your browser's address bar!");
+    }
+  };
+
   const phases = [
     { id: 'interview', label: '1. Interview', icon: Stethoscope },
     { id: 'charting', label: '2. Chart & Orders', icon: FileText },
@@ -64,6 +94,18 @@ export default function Navbar({ activePhase, setActivePhase, onResetCase, revea
                 {revealedCluesCount}/{totalCluesCount}
               </span>
             </div>
+
+            {/* Install App Button */}
+            {!isInstalled && (
+              <button
+                onClick={handleInstallClick}
+                className="flex items-center gap-1.5 text-xs font-bold text-teal-300 hover:text-white bg-teal-950/80 hover:bg-teal-900 px-3 py-1.5 rounded-xl border border-teal-800 transition-all shadow-xs whitespace-nowrap"
+                title="Install as native desktop app"
+              >
+                <Download className="w-3.5 h-3.5 text-teal-400" />
+                <span>Install App</span>
+              </button>
+            )}
 
             {/* Reset Button */}
             <button
