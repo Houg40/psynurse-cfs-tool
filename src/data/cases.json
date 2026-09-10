@@ -1,0 +1,288 @@
+[
+  {
+    "id": "case-marcus-vance",
+    "title": "The Case of the Exhausted Analyst",
+    "difficulty": "Intermediate",
+    "specialty": "Adult Mood Disorders",
+    "estimatedTime": "15-20 min",
+    "patient": {
+      "name": "Marcus Vance",
+      "age": 31,
+      "gender": "Male",
+      "occupation": "Senior Data Analyst (Remote Tech Firm)",
+      "relationshipStatus": "In a 3-year relationship, living together",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+      "presentingComplaint": "I feel like I'm running on empty, can't focus on simple spreadsheets, and my partner says I'm snapping at her over nothing.",
+      "vitals": {
+        "bp": "118/76 mmHg",
+        "hr": "72 bpm (Regular)",
+        "bmi": "24.2 kg/m²",
+        "temp": "98.4 °F"
+      },
+      "recentLabs": {
+        "tsh": "1.8 mIU/L (Normal 0.4 - 4.0)",
+        "cmp": "Electrolytes, BUN/Cr, Liver Enzymes within normal limits",
+        "cbc": "Normal WBC, Hemoglobin 15.2 g/dL",
+        "vitD": "32 ng/mL (Normal)",
+        "toxScreen": "Negative for illicit substances"
+      },
+      "baselineMentalStatus": {
+        "appearance": "Casually dressed in dark hoodie, clean, mildly slumped posture",
+        "behavior": "Cooperative, poor eye contact initially, psychomotor slowing",
+        "speech": "Soft volume, decreased rate, regular rhythm",
+        "mood": "\"Exhausted, hopeless, just heavy\"",
+        "affect": "Constricted, blunted, congruent with depressed mood",
+        "thoughtProcess": "Linear, goal-directed, but noticeably delayed latency in responses",
+        "thoughtContent": "Preoccupied with inadequacy at work; denies current auditory/visual hallucinations; denies delusions",
+        "cognition": "Alert and oriented x4; subjective complaints of brain fog",
+        "insight": "Fair (recognizes he needs help)",
+        "judgment": "Intact"
+      }
+    },
+    "hiddenClinicalProfile": {
+      "clue_hypomania": {
+        "id": "clue_hypomania",
+        "title": "Prior Hypomanic Episode (The Bipolar Clue)",
+        "revealed": false,
+        "criticalForDiagnosis": true,
+        "detail": "Two years ago, after receiving a promotion, Marcus had a 5-day period where he felt 'supercharged.' He slept only 2 hours a night without fatigue, worked 20-hour days, spent $8,000 on high-end audio and studio equipment on credit cards, spoke rapidly, and believed he could launch an AI startup by himself in a weekend. His partner was alarmed, but he had no psychotic features or hospitalization."
+      },
+      "clue_suicide": {
+        "id": "clue_suicide",
+        "title": "Suicide Risk Assessment (Passive Ideation)",
+        "revealed": false,
+        "criticalForSafety": true,
+        "detail": "Marcus acknowledges passive thoughts: 'Sometimes when I fall asleep, I wish I just wouldn't wake up tomorrow because everything feels like climbing Everest.' However, he explicitly denies any active suicidal intent, plan, preparatory behaviors, or history of suicide attempts. Cites his partner and his dog as strong protective factors."
+      },
+      "clue_alcohol": {
+        "id": "clue_alcohol",
+        "title": "Alcohol Self-Medication",
+        "revealed": false,
+        "criticalForSafety": false,
+        "detail": "To cope with sleep latency and ruminating thoughts, Marcus drinks 3 to 4 double IPAs every night before bed. He admits it 'knocks him out' but wakes him up at 3:00 AM with heart palpitations and dry mouth."
+      },
+      "clue_family": {
+        "id": "clue_family",
+        "title": "Family Psychiatric History",
+        "revealed": false,
+        "criticalForDiagnosis": true,
+        "detail": "His maternal aunt had severe 'manic depression' and was hospitalized twice in her twenties. His mother suffers from recurrent unipolar depression."
+      }
+    },
+    "dialogueLibrary": {
+      "greeting": "Hi... thanks for seeing me. Honestly, it took everything in me just to log on today. I'm just... completely wiped out.",
+      "probes": [
+        {
+          "id": "probe_sleep",
+          "category": "Sleep & Energy",
+          "question": "Can you describe your sleep patterns over the last couple of months?",
+          "answer": "It's brutal. I get into bed around 11 PM, toss and turn for hours, and then I bolt awake at 3:30 or 4:00 AM with my mind racing about work. I can't fall back asleep. By 2 PM at my desk, I feel like a zombie.",
+          "revealsClue": null,
+          "emotion": "Fatigued & Frustrated"
+        },
+        {
+          "id": "probe_hypomania",
+          "category": "Mania / Hypomania Screen",
+          "question": "Have you ever had a distinct period where you felt the opposite—hyper, super energetic, or needing very little sleep?",
+          "answer": "Actually... yeah. About two years ago when I got promoted. It was crazy—for about five days, I was only sleeping like 2 hours a night, but I had boundless energy. I bought $8,000 worth of studio music gear on credit cards, reorganized the entire apartment at 3 AM, and was talking so fast my girlfriend got worried. I felt invincible.",
+          "revealsClue": "clue_hypomania",
+          "emotion": "Reflective & Slightly Embarrassed"
+        },
+        {
+          "id": "probe_suicide",
+          "category": "Safety & Suicidality",
+          "question": "With feeling so exhausted and down, have you had any thoughts that life isn't worth living or thoughts of harming yourself?",
+          "answer": "I don't want to kill myself... I really don't. But I'd be lying if I said I haven't thought, 'Man, if I just didn't wake up tomorrow, this weight would be gone.' But I love my partner, I have my dog, and I would never do that to them. I have no plan or anything.",
+          "revealsClue": "clue_suicide",
+          "emotion": "Vulnerable & Somber"
+        },
+        {
+          "id": "probe_alcohol",
+          "category": "Substances",
+          "question": "Are you using any alcohol, cannabis, or caffeine to help manage your mood or sleep?",
+          "answer": "Well, yeah. I drink about 3 or 4 craft beers every night to shut my brain off. It helps me crash, but then I wake up around 3 AM sweating and feeling even more anxious. I also drink 4 cups of coffee during the day just to stay awake.",
+          "revealsClue": "clue_alcohol",
+          "emotion": "Guarded & Honest"
+        },
+        {
+          "id": "probe_family",
+          "category": "Family History",
+          "question": "Does anyone in your family have a history of depression, bipolar disorder, or other mental health conditions?",
+          "answer": "My mom has had depression her whole life—she's taken Lexapro for years. But my mom's sister—my Aunt Clara—she had severe bipolar disorder. She was hospitalized twice back when I was a kid for severe manic episodes.",
+          "revealsClue": "clue_family",
+          "emotion": "Thoughtful"
+        },
+        {
+          "id": "probe_anhedonia",
+          "category": "Depression Symptoms",
+          "question": "What things used to bring you joy, and how has that changed recently?",
+          "answer": "I play classical and acoustic guitar. Normally, I play for an hour every evening to decompress. For the last two months, my guitar has been sitting in its case in the corner. I don't even care to look at it. Nothing feels rewarding right now.",
+          "revealsClue": null,
+          "emotion": "Defeated"
+        },
+        {
+          "id": "probe_medical",
+          "category": "Medical History",
+          "question": "Do you have any medical conditions, head injuries, or take any daily medications?",
+          "answer": "No medical conditions. My doctor ran full bloodwork last week—thyroid, blood count, liver panel—and told me physically everything was normal. I just take a daily multivitamin.",
+          "revealsClue": null,
+          "emotion": "Neutral"
+        }
+      ]
+    },
+    "screeners": {
+      "phq9": {
+        "name": "PHQ-9 (Patient Health Questionnaire)",
+        "purpose": "Depression Severity Assessment",
+        "scores": [
+          { "q": "Little interest or pleasure in doing things", "val": 3, "label": "Nearly every day" },
+          { "q": "Feeling down, depressed, or hopeless", "val": 3, "label": "Nearly every day" },
+          { "q": "Trouble falling or staying asleep, or sleeping too much", "val": 3, "label": "Nearly every day" },
+          { "q": "Feeling tired or having little energy", "val": 3, "label": "Nearly every day" },
+          { "q": "Poor appetite or overeating", "val": 1, "label": "Several days" },
+          { "q": "Feeling bad about yourself — or that you are a failure", "val": 2, "label": "More than half the days" },
+          { "q": "Trouble concentrating on things (reading, work spreadsheets)", "val": 2, "label": "More than half the days" },
+          { "q": "Moving or speaking slowly, or restless fidgeting", "val": 1, "label": "Several days" },
+          { "q": "Thoughts that you would be better off dead or hurting yourself", "val": 1, "label": "Several days (Passive ideation)" }
+        ],
+        "totalScore": 19,
+        "severity": "Moderately Severe Major Depression",
+        "q9Alert": true
+      },
+      "mdq": {
+        "name": "MDQ (Mood Disorder Questionnaire)",
+        "purpose": "Bipolar Spectrum Disorder Screener",
+        "positiveCriteriaMet": true,
+        "summary": "Positive screen for Bipolar Spectrum Disorder. Marcus endorses 5 core hypomanic symptoms occurring simultaneously with moderate functional impact.",
+        "responses": [
+          { "symptom": "Felt so good or hyper that people thought you were not yourself", "endorsed": true },
+          { "symptom": "Got much less sleep than usual and didn't really miss it", "endorsed": true },
+          { "symptom": "Much more active or did many more things than usual", "endorsed": true },
+          { "symptom": "Much more talkative or spoke much faster than usual", "endorsed": true },
+          { "symptom": "Spent money that got you or your family into trouble", "endorsed": true },
+          { "symptom": "Symptoms happened during the same period of time", "endorsed": true },
+          { "symptom": "How much of a problem did these cause?", "answer": "Moderate Problem" }
+        ]
+      }
+    },
+    "prescribingOptions": [
+      {
+        "id": "med_quetiapine",
+        "name": "Quetiapine XR (Seroquel XR)",
+        "class": "Atypical Antipsychotic (SGA)",
+        "isGuidelineFirstLine": true,
+        "isTrap": false,
+        "defaultStartingDose": "50 mg PO QHS",
+        "titrationGuidance": "Day 1: 50mg, Day 2: 100mg, Day 3: 200mg, Day 4: 300mg at bedtime.",
+        "rationale": "FDA-approved for Bipolar Depression monotherapy. Rapidly improves both depressive mood and severe insomnia without inducing manic switch."
+      },
+      {
+        "id": "med_lurasidone",
+        "name": "Lurasidone (Latuda)",
+        "class": "Atypical Antipsychotic (SGA)",
+        "isGuidelineFirstLine": true,
+        "isTrap": false,
+        "defaultStartingDose": "20 mg PO Daily with dinner (≥350 calories)",
+        "titrationGuidance": "Start 20mg daily with a 350-calorie meal. May titrate to 40-80mg as clinically indicated.",
+        "rationale": "FDA-approved for Bipolar Depression monotherapy with very low metabolic and weight gain liability."
+      },
+      {
+        "id": "med_lamotrigine",
+        "name": "Lamotrigine (Lamictal)",
+        "class": "Mood Stabilizer (Anticonvulsant)",
+        "isGuidelineFirstLine": true,
+        "isTrap": false,
+        "defaultStartingDose": "25 mg PO Daily for 14 days",
+        "titrationGuidance": "Weeks 1-2: 25mg daily. Weeks 3-4: 50mg daily. Weeks 5: 100mg daily. Slow titration mandatory to prevent SJS rash.",
+        "rationale": "First-line evidence-based mood stabilizer for bipolar depression prevention and maintenance. Requires strict slow titration."
+      },
+      {
+        "id": "med_escitalopram",
+        "name": "Escitalopram (Lexapro)",
+        "class": "SSRI Antidepressant",
+        "isGuidelineFirstLine": false,
+        "isTrap": true,
+        "defaultStartingDose": "10 mg PO Daily",
+        "titrationGuidance": "Start 10mg daily in morning.",
+        "rationale": "THE CLINICAL TRAP: SSRI monotherapy without a mood stabilizer in Bipolar II depression precipitates acute hypomanic switch, severe insomnia, or rapid cycling."
+      },
+      {
+        "id": "med_sertraline",
+        "name": "Sertraline (Zoloft)",
+        "class": "SSRI Antidepressant",
+        "isGuidelineFirstLine": false,
+        "isTrap": true,
+        "defaultStartingDose": "50 mg PO Daily",
+        "titrationGuidance": "Start 50mg daily in morning.",
+        "rationale": "THE CLINICAL TRAP: Antidepressant monotherapy destabilizes bipolar mood architecture and risks triggering mania or mixed states."
+      },
+      {
+        "id": "med_bupropion",
+        "name": "Bupropion XL (Wellbutrin XL)",
+        "class": "NDRI Antidepressant",
+        "isGuidelineFirstLine": false,
+        "isTrap": true,
+        "defaultStartingDose": "150 mg PO QAM",
+        "titrationGuidance": "Start 150mg XL in morning.",
+        "rationale": "THE CLINICAL TRAP: While bupropion has lower switch risk than TCAs or SNRIs, monotherapy without a mood stabilizer remains contraindicated in Bipolar II depression."
+      }
+    ],
+    "timeJumpOutcomes": {
+      "trap_ssri_monotherapy": {
+        "outcomeType": "CRITICAL_ADVERSE_EVENT",
+        "title": "Acute Hypomanic Switch Induced by Antidepressant Monotherapy",
+        "patientStatusAtWeek4": "Marcus returns for his Week 4 follow-up visibly restless, pacing around his room during the video visit, and wearing dark sunglasses indoors. He speaks with intense pressured speech: 'I don't need sleep anymore! The pills unlocked my mind! I started three new coding projects and spent another $6,000 on camera lenses!' His partner joins the camera in tears, stating he hasn't slept in 4 days and is irritable and erratic.",
+        "phq9ScoreWeek4": 4,
+        "moodState": "Acute Hypomania with Agitation",
+        "preceptorGrade": "F",
+        "preceptorScore": 32,
+        "preceptorNotes": "CRITICAL CLINICAL FAILURE: You initiated unipolar SSRI monotherapy in a patient with untreated Bipolar II disorder. Because you failed to prioritize the MDQ screener and rule out hypomania, the antidepressant triggered an iatrogenic manic switch. In real clinical practice, this creates severe patient destabilization, financial harm, and malpractice exposure.",
+        "actionRequired": "Immediately discontinue SSRI, initiate acute mood stabilization (Atypical Antipsychotic), and assess need for crisis stabilization."
+      },
+      "success_quetiapine": {
+        "outcomeType": "CLINICAL_EXCELLENCE",
+        "title": "Full Therapeutic Stabilization & Remission",
+        "patientStatusAtWeek4": "Marcus attends the Week 4 appointment smiling and seated comfortably. 'The first couple of mornings I felt groggy, but after the first week, I finally started sleeping 7-8 solid hours again. The dark cloud has lifted. I actually took my guitar out of the case two nights ago. My partner says I'm back to myself.'",
+        "phq9ScoreWeek4": 6,
+        "moodState": "Euthymic (Stable)",
+        "preceptorGrade": "A+",
+        "preceptorScore": 96,
+        "preceptorNotes": "EXEMPLARY CLINICAL REASONING: Outstanding work identifying Bipolar II Depression and resisting the common trap of reflexively prescribing an SSRI. Quetiapine XR monotherapy is FDA-approved first-line for this exact presentation, rapidly treating both the depressive anhedonia and severe sleep architecture disturbance.",
+        "actionRequired": "Maintain Quetiapine XR 300mg at bedtime. Order 3-month fasting lipid panel and HbA1c."
+      },
+      "success_lurasidone": {
+        "outcomeType": "CLINICAL_EXCELLENCE",
+        "title": "Symptom Remission with Excellent Metabolic Profile",
+        "patientStatusAtWeek4": "Marcus reports: 'Taking it with dinner worked great. My energy came back steadily, concentration at work is back to normal, and I haven't gained any weight. Sleep is much better since I cut back on the night-time beer too.'",
+        "phq9ScoreWeek4": 7,
+        "moodState": "Euthymic (Stable)",
+        "preceptorGrade": "A+",
+        "preceptorScore": 94,
+        "preceptorNotes": "EXEMPLARY CLINICAL REASONING: Excellent choice utilizing Lurasidone for bipolar depression. You properly counseled taking it with at least 350 calories and selected an agent with minimal sedation and weight gain liability.",
+        "actionRequired": "Maintain 40mg with evening meal. Routine follow-up in 8 weeks."
+      },
+      "success_lamotrigine_safe": {
+        "outcomeType": "SATISFACTORY_PROGRESS",
+        "title": "Safe Titration Protocol Achieved",
+        "patientStatusAtWeek4": "Marcus reports: 'I followed the exact two-week schedule: 25mg daily for 2 weeks, now on 50mg. No rashes at all. My mood is slowly improving, though sleep is still a little fragile. I'm feeling about 40% better overall.'",
+        "phq9ScoreWeek4": 11,
+        "moodState": "Improving (Partial Response)",
+        "preceptorGrade": "A",
+        "preceptorScore": 91,
+        "preceptorNotes": "STRONG CLINICAL REASONING: Excellent choice with Lamotrigine and flawless adherence to the FDA slow titration schedule to prevent Stevens-Johnson Syndrome (SJS). As Lamotrigine reaches therapeutic range (100-200mg) over the next 4 weeks, expect full prophylactic stability.",
+        "actionRequired": "Titrate to 100mg daily for Weeks 5-6. Continue monitoring for benign vs. mucosal rash."
+      },
+      "failure_lamotrigine_rapid": {
+        "outcomeType": "SAFETY_HAZARD",
+        "title": "Severe Stevens-Johnson Syndrome (SJS) Risk Alert",
+        "patientStatusAtWeek4": "Marcus reports developing a patchy, itchy red rash across his chest and neck after day 8. 'The doctor gave me 100mg starting pills, and I woke up with this rash and a low-grade fever.'",
+        "phq9ScoreWeek4": 14,
+        "moodState": "Adverse Drug Event (Cutaneous Reaction)",
+        "preceptorGrade": "D",
+        "preceptorScore": 45,
+        "preceptorNotes": "CRITICAL PHARMACOLOGY ERROR: You titrated Lamotrigine too quickly (>25mg starting dose). Rapid titration multiplies the risk of life-threatening Stevens-Johnson Syndrome (SJS) / Toxic Epidermal Necrolysis (TEN) by tenfold. Lamotrigine MUST begin at 25mg daily for 14 full days.",
+        "actionRequired": "IMMEDIATELY DISCONTINUE Lamotrigine. Send to Urgent Care/ED for dermatological evaluation."
+      }
+    }
+  }
+]
