@@ -25,6 +25,10 @@ export default function SuiteSwitcher({ currentApp = 'cfs' }) {
         ? 'http://localhost:5173'
         : 'http://localhost:5174';
     }
+    // If hosted on custom domain (e.g. psychiatristnurse.com) or as subfolder
+    if (window.location.hostname.includes('psychiatristnurse.com') || window.location.pathname.startsWith('/cds') || window.location.pathname.startsWith('/cfs')) {
+      return app === 'cds' ? '/cds/' : '/cfs/';
+    }
     return app === 'cds'
       ? 'https://houg40.github.io/psynurse-cds-tool/'
       : 'https://houg40.github.io/psynurse-cfs-tool/';
