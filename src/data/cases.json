@@ -11,7 +11,7 @@
       "gender": "Male",
       "occupation": "Senior Data Analyst (Remote Tech Firm)",
       "relationshipStatus": "In a 3-year relationship, living together",
-      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+      "avatar": "./marcus.jpg",
       "presentingComplaint": "I feel like I'm running on empty, can't focus on simple spreadsheets, and my partner says I'm snapping at her over nothing.",
       "vitals": {
         "bp": "118/76 mmHg",
