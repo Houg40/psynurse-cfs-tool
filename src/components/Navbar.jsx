@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Stethoscope, FileText, FastForward, Award, RotateCcw, ShieldCheck, Sparkles, Download } from 'lucide-react';
+import SuiteSwitcher from './SuiteSwitcher';
 
 export default function Navbar({ activePhase, setActivePhase, onResetCase, revealedCluesCount, totalCluesCount }) {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -116,6 +117,9 @@ export default function Navbar({ activePhase, setActivePhase, onResetCase, revea
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Reset</span>
             </button>
+
+            {/* Suite Portal Switcher */}
+            <SuiteSwitcher currentApp="cfs" />
           </div>
 
         </div>
