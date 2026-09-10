@@ -3,7 +3,7 @@ import { Send, Sparkles, AlertCircle, HeartPulse, User, HelpCircle, CheckCircle2
 
 export default function VirtualExamRoom({ caseData, messages, onSendMessage, onAskProbe, revealedClues, onAdvanceToCharting }) {
   const [customInput, setCustomInput] = useState('');
-  const [isAudioEnabled, setIsAudioEnabled] = useState(true);
+  const [isAudioEnabled, setIsAudioEnabled] = useState(false); // Default OFF - requires manual clinician selection
   const [isSpeaking, setIsSpeaking] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -42,7 +42,7 @@ export default function VirtualExamRoom({ caseData, messages, onSendMessage, onA
     window.speechSynthesis.speak(utterance);
   };
 
-  // Automatically speak latest patient response if audio is enabled
+  // Speak latest patient response ONLY if audio is explicitly enabled by clinician
   useEffect(() => {
     if (!isAudioEnabled || messages.length === 0) return;
     const lastMsg = messages[messages.length - 1];
@@ -103,14 +103,24 @@ export default function VirtualExamRoom({ caseData, messages, onSendMessage, onA
               )}
               <button
                 onClick={toggleAudio}
-                className={`p-1.5 rounded-full border backdrop-blur-xs transition-all shadow-md ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-full border backdrop-blur-xs transition-all shadow-md text-[11px] font-bold ${
                   isAudioEnabled
-                    ? 'bg-teal-600/90 border-teal-400 text-white hover:bg-teal-500'
-                    : 'bg-slate-900/80 border-slate-700 text-slate-400 hover:text-white'
+                    ? 'bg-teal-600/95 border-teal-400 text-white hover:bg-teal-500 shadow-teal-900/30'
+                    : 'bg-slate-900/85 border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800'
                 }`}
-                title={isAudioEnabled ? "Audio Enabled (Click to Mute)" : "Audio Muted (Click to Enable)"}
+                title={isAudioEnabled ? "Voice Enabled (Click to Mute)" : "Voice Muted (Click to Turn Voice On)"}
               >
-                {isAudioEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+                {isAudioEnabled ? (
+                  <>
+                    <Volume2 className="w-3.5 h-3.5 text-teal-200" />
+                    <span>Voice ON</span>
+                  </>
+                ) : (
+                  <>
+                    <VolumeX className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Voice OFF</span>
+                  </>
+                )}
               </button>
             </div>
             {/* Patient Name Overlay */}
@@ -245,10 +255,11 @@ export default function VirtualExamRoom({ caseData, messages, onSendMessage, onA
                     {!isClinician && (
                       <button
                         onClick={() => speakText(msg.text)}
-                        className="text-slate-400 hover:text-teal-300 p-1 rounded hover:bg-slate-700/60 transition-all flex-shrink-0"
-                        title="Replay spoken audio"
+                        className="text-slate-400 hover:text-teal-300 hover:bg-slate-700/60 p-1.5 rounded-md transition-all flex-shrink-0 flex items-center gap-1 text-[11px]"
+                        title="Click to play spoken voice"
                       >
                         <Volume2 className="w-3.5 h-3.5" />
+                        <span className="text-[10px] hidden sm:inline text-slate-400">Play Voice</span>
                       </button>
                     )}
                   </div>
